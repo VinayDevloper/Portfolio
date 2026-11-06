@@ -1,0 +1,246 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #050505;
+  --surface: #0f0f0f;
+  --glass: rgba(15, 15, 15, 0.72);
+  --ink: #f5f5f0;
+  --mut: #a1a1aa;
+  --faint: #52525b;
+  --line: rgba(255, 255, 255, 0.09);
+  --accent-text: #F0B342;
+  --lime: #F0B342;
+
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+html.light {
+  --bg: #f5f4ef;
+  --surface: #ffffff;
+  --glass: rgba(255, 255, 255, 0.82);
+  --ink: #141413;
+  --mut: #57575e;
+  --faint: #989892;
+  --line: rgba(20, 20, 19, 0.1);
+  --accent-text: #B45309;
+  --lime: #D97706;
+}
+
+@theme {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-glass: var(--glass);
+  --color-ink: var(--ink);
+  --color-mut: var(--mut);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-accenttext: var(--accent-text);
+  --color-lime: var(--lime);
+
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+}
+
+/* Explicit class mappings for guaranteed runtime fidelity across Tailwind engines */
+.bg-bg {
+  background-color: var(--bg);
+}
+
+.bg-surface {
+  background-color: var(--surface);
+}
+
+.bg-glass {
+  background-color: var(--glass);
+}
+
+.bg-line {
+  background-color: var(--line);
+}
+
+.bg-lime {
+  background-color: var(--lime);
+}
+
+.text-ink {
+  color: var(--ink);
+}
+
+.text-mut {
+  color: var(--mut);
+}
+
+.text-faint {
+  color: var(--faint);
+}
+
+.text-accenttext {
+  color: var(--accent-text);
+}
+
+.text-lime {
+  color: var(--lime);
+}
+
+.border-line {
+  border-color: var(--line);
+}
+
+.border-faint {
+  border-color: var(--faint);
+}
+
+.border-lime {
+  border-color: var(--lime);
+}
+
+
+  /* ── Project cards (clickable → strong glow + lift) ─────────────────── */
+  .project-card {
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+  }
+
+    .project-card:hover {
+      border-color: #F0B342 !important;
+      box-shadow: 0 0 0 1px #F0B342, 0 0 35px rgba(240, 179, 66, 0.28) !important;
+      transform: translateY(-3px);
+    }
+
+      html.light .project-card {
+        border: 1px solid rgba(0, 0, 0, 0.12) !important;
+      }
+
+        html.light .project-card:hover {
+          border-color: #D97706 !important;
+          box-shadow: 0 0 0 1px #D97706, 0 0 28px rgba(217, 119, 6, 0.22) !important;
+          transform: translateY(-3px);
+        }
+
+        /* ── Info cards (non-clickable → very subtle bg tint only) ───────────── */
+        .interactive-card {
+          border: 1px solid rgba(255, 255, 255, 0.10) !important;
+          transition: border-color 0.3s ease, background-color 0.3s ease;
+          cursor: default;
+        }
+
+        .interactive-card:hover {
+          background-color: rgba(255, 255, 255, 0.04) !important;
+          border-color: rgba(255, 255, 255, 0.16) !important;
+        }
+
+        html.light .interactive-card {
+          border: 1px solid rgba(0, 0, 0, 0.08) !important;
+        }
+
+        html.light .interactive-card:hover {
+          background-color: rgba(0, 0, 0, 0.03) !important;
+          border-color: rgba(0, 0, 0, 0.14) !important;
+        }
+
+        /* ── Light theme portrait blend fix ─────────────────────────────────── */
+        html.light [data-testid="hero-portrait"] img {
+          mix-blend-mode: multiply;
+        }
+
+        .font-serif {
+          font-family: var(--font-serif);
+        }
+
+        .font-sans {
+          font-family: var(--font-sans);
+        }
+
+        .font-mono {
+          font-family: var(--font-mono);
+        }
+
+        *,
+        *::before,
+        *::after {
+          box-sizing: border-box;
+        }
+
+        html {
+          scroll-behavior: smooth;
+          font-family: var(--font-sans);
+          background-color: var(--bg);
+          color: var(--ink);
+          text-rendering: optimizeLegibility;
+          -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+          margin: 0;
+          padding: 0;
+          font-family: var(--font-sans);
+          background-color: var(--bg);
+          color: var(--ink);
+          overflow-x: hidden;
+          transition: background-color 0.35s ease, color 0.35s ease;
+        }
+
+        @keyframes marquee {
+          0% {
+            transform: translateX(0);
+          }
+
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+
+        .animate-marquee {
+          display: flex;
+          width: max-content;
+          animation: marquee 28s linear infinite;
+        }
+
+        .animate-marquee:hover {
+          animation-play-state: paused;
+        }
+
+        @keyframes ping {
+
+          75%,
+          100% {
+            transform: scale(2);
+            opacity: 0;
+          }
+        }
+
+        .animate-ping {
+          animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+          width: 7px;
+        }
+
+        ::-webkit-scrollbar-track {
+          background: var(--bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+          background: var(--faint);
+          border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+          background: var(--mut);
+        }
+
+        @media print {
+          body {
+            background: #ffffff !important;
+            color: #000000 !important;
+          }
+
+          .no-print {
+            display: none !important;
+          }
+        }

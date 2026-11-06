@@ -1,0 +1,12 @@
+@echo off
+title Portfolio Dev Server
+echo Starting Vinay Sawant Portfolio Dev Server...
+echo.
+echo Live at: http://localhost:3000/
+echo.
+echo Press Ctrl+C to stop the server.
+echo.
+cd /d "%~dp0"
+npm run dev
+pause
+
